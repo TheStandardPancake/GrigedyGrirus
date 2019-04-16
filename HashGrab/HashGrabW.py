@@ -1,3 +1,4 @@
+#Works on windows
 import os
 from os import getenv
 import sqlite3
